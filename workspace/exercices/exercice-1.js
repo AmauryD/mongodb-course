@@ -7,7 +7,7 @@ const keanuReavesFilms = db.movies.find({
     title: 1
 });
 
-console.log(keanuReavesFilms);
+// console.log(keanuReavesFilms);
 
 const comedies = db.movies.find({
     genres: 'Comedy'
@@ -16,7 +16,7 @@ const comedies = db.movies.find({
     title: 1
 })
 
-console.log(comedies);
+// console.log(comedies);
 
 const between2002And2008 = db.movies.find({
     year: {
@@ -27,7 +27,7 @@ const between2002And2008 = db.movies.find({
     year: 1
 });
 
-console.log(between2002And2008);
+// console.log(between2002And2008);
 
 const mattDiamant = db.movies.find({
     cast: {
@@ -35,4 +35,32 @@ const mattDiamant = db.movies.find({
     }
 });
 
-console.log(mattDiamant);
+// console.log(mattDiamant);
+
+const neilBurger = db.movies.find({
+    $or: [{
+        directors: "Neil Burger"
+    }, {
+        directors: "Brad Furman"
+    }]
+}).projection({
+    directors: 1,
+    title: 1
+})
+
+console.log(neilBurger);
+
+const theOldest = db.movies.findOne(
+    {}, // condition
+    { 
+        // projection
+        year: 1
+    }, 
+    {
+        // sort( year: 1 )
+        sort: { 
+            year: 1
+        }
+    });
+
+console.log(theOldest);
