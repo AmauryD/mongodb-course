@@ -61,6 +61,7 @@ const theOldest = db.movies.findOne(
         sort: { 
             year: 1
         }
-    });
+    }
+);
 
 console.log(theOldest);
