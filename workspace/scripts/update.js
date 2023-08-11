@@ -7,9 +7,12 @@ db.listingsAndReviews.updateOne({
     // $inc: incrémente un champ
     // $set: set une ou plusieurs valeurs
     // unset: supprime un champ
-    $rename: {
-        beds: 'toilets'
-    }
+    // $rename: {
+    //     beds: 'toilets'
+    // }
+    // $push: { // push dans un tableau une valeur
+    //     amenities: 'Ouzbek Bed'
+    // }
 })
 
 const reviews = db.listingsAndReviews.find({
