@@ -1,5 +1,4 @@
-const connectionString = require('./exercices/connection-db.js');
-const db = connect(connectionString).getSiblingDB('sample_airbnb');
+load('./exercices/connection-db.js');
 
 db.listingsAndReviews.deleteOne({
     _id: '10009999'
