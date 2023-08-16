@@ -6,12 +6,23 @@ export async function registerCommands(token, clientId) {
             name: "citation",
             description: "envoie une citation d'un philosophe connu ou méconnu"
         },
+        {
+            name: "clear_citations",
+            description : "explose toutes les citations"
+        },
         new SlashCommandBuilder()
             .setName('add_citation')
             .setDescription('Ajoute une citation')
             .addStringOption(option =>
                 option.setName('citation')
                     .setDescription('La citation')
+            ),
+        new SlashCommandBuilder()
+            .setName('clear_citation')
+            .setDescription('Supprime des citations selon une phrase de recherche')
+            .addStringOption(option =>
+                option.setName('search_phrase')
+                    .setDescription('La recherche')
             )
     ];
     

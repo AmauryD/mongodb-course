@@ -48,6 +48,20 @@ async function init() {
         if (interaction.commandName === "add_citation") {
             await addCitation(interaction, db);
         }
+        if (interaction.commandName === "clear_citations") {
+            await db.collection("citations").deleteMany();
+            interaction.reply("Collection supprimée !");
+        }
+        if (interaction.commandName === "clear_citation") {
+            const searchPhrase = interaction.options.getString("search_phrase");
+
+            const deleted = await db.collection("citations").deleteMany({
+                searchPhrase : {
+                    $regex: searchPhrase
+                }
+            });
+            interaction.reply("Elements supprimés : " + deleted.deletedCount);
+        }
     });
 
     await client.login(TOKEN);
