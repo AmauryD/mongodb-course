@@ -4,6 +4,7 @@ import { registerCommands } from "./register-commands.js";
 import { citationCommand } from "./commands/citations.js";
 import { connectToDatabase } from "./database-connection.js";
 import { readFileSync } from "fs";
+import { addCitation } from "./commands/add-citation.js";
 
 // lis le fichier .env et l'injecte dans le process.env
 dotenv.config({
@@ -35,16 +36,19 @@ async function init() {
     });
 
     // on écoute sur l'évènement "interactionCreate". Qui capture les commandes faites à votre bot
-    client.on("interactionCreate", (interaction) => {
+    client.on("interactionCreate", async (interaction) => {
         console.log(
             interaction.commandName, 
             // l'argument citation passé à la commande
             interaction.options.getString("citation")
         );
         if (interaction.commandName === "citation") {
-            citationCommand(interaction, db);
+            await citationCommand(interaction, db);
         }
-    })
+        if (interaction.commandName === "add_citation") {
+            await addCitation(interaction, db);
+        }
+    });
 
     await client.login(TOKEN);
 
