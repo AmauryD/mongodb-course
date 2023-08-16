@@ -33,6 +33,7 @@ async function init() {
     // on écoute sur l'évènement "interactionCreate". Qui capture les commandes faites à votre bot
     client.on("interactionCreate", (interaction) => {
         console.log(interaction.user.displayName, "a fait", interaction.commandName);
+        interaction.reply("La bille ne fait pas le mouane");
     })
 
     await client.login(TOKEN);
