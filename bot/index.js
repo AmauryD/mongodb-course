@@ -36,7 +36,11 @@ async function init() {
 
     // on écoute sur l'évènement "interactionCreate". Qui capture les commandes faites à votre bot
     client.on("interactionCreate", (interaction) => {
-        console.log(interaction.commandName, interaction.options);
+        console.log(
+            interaction.commandName, 
+            // l'argument citation passé à la commande
+            interaction.options.getString("citation")
+        );
         if (interaction.commandName === "citation") {
             citationCommand(interaction, db);
         }
