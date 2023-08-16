@@ -30,6 +30,11 @@ async function init() {
         intents: [GatewayIntentBits.Guilds]
     });
 
+    // on écoute sur l'évènement "interactionCreate". Qui capture les commandes faites à votre bot
+    client.on("interactionCreate", (interaction) => {
+        console.log(interaction.user.displayName, "a fait", interaction.commandName);
+    })
+
     await client.login(TOKEN);
 
     console.log("Le bot est activé !");
